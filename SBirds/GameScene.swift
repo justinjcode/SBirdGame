@@ -8,10 +8,50 @@
 import SpriteKit
 import GameplayKit
 
+struct PhysicsCategory {
+    static let None: UInt32 = 0
+    static let Player: UInt32 = 0b1
+    static let Obstacle: UInt32 = 0b10
+    static let PlayerBody: UInt32 = 0b100
+    static let Barrier: UInt32 = 0b1000
+}
+
 class GameScene: SKScene {
+    
+    let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
+    let scrollSpeed: CGFloat = 200
+    var scrollNode: SKNode!
+    var player: SKSpriteNode!
+    var obstacleSpawner: SKNode!
+    var playButton: SKSpriteNode!
+    var frontBarrier: SKSpriteNode!
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
+        /* Set reference to scroll Node */
+        if let scrollNode = self.childNode(withName: "scrollNode") {
+          self.scrollNode = scrollNode
+        } else {
+          print("ScrollNode could not be connected properly")
+        }
+        if let playButton = self.childNode(withName: "playButton") as? CustomButtonNode {
+          self.playButton = playButton
+        } else {
+          print("playButton was not initialized properly")
+        }
+    }
+    
+    func connectBarrier() {
+        // referecing the barrier node from the scene
+        if let frontBarrier = self.childNode(withName: "frontBarrier") as? SKSpriteNode {
+          self.frontBarrier = frontBarrier
+        } else {
+          print("frontBarrier could not be connected properly")
+        }
+        // setting the barrier physics body preferences
+        frontBarrier.physicsBody?.categoryBitMask = PhysicsCategory.Barrier
+        frontBarrier.physicsBody?.collisionBitMask = PhysicsCategory.None
+        frontBarrier.physicsBody?.contactTestBitMask = PhysicsCategory.Obstacle
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -20,5 +60,28 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
+        scrollWorld()
+    }
+    
+    func scrollWorld() {
+        /* Scroll World */
+        scrollNode.position.x -= scrollSpeed * CGFloat(fixedDelta)
+        
+        /* Loop through scroll layer nodes */
+        for ground in scrollNode.children as! [SKSpriteNode] {
+            
+            /* Get ground node position, convert node position to scene space */
+            let groundPosition = scrollNode.convert(ground.position, to: self)
+            
+            /* Check if ground sprite has left the scene */
+            if groundPosition.x <= -ground.size.width / 2 {
+                
+                /* Reposition ground sprite to the second starting position */
+                let newPosition = CGPoint(x: (self.size.width / 2) + ground.size.width, y: groundPosition.y)
+                
+                /* Convert new node position back to scroll layer space */
+                ground.position = self.convert(newPosition, to: scrollNode)
+            }
+        }
     }
 }
