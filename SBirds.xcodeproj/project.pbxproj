@@ -18,6 +18,7 @@
 		17C7026329208AFA00C9C4EE /* CustomButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C7026229208AFA00C9C4EE /* CustomButtonNode.swift */; };
 		17C702652920940200C9C4EE /* ObstacleSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C702642920940200C9C4EE /* ObstacleSpawner.swift */; };
 		17C702672920C06700C9C4EE /* ObstacleConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C702662920C06700C9C4EE /* ObstacleConfigs.swift */; };
+		17DADD64292298B5002FCF90 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DADD63292298B5002FCF90 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		17C7026229208AFA00C9C4EE /* CustomButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonNode.swift; sourceTree = "<group>"; };
 		17C702642920940200C9C4EE /* ObstacleSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleSpawner.swift; sourceTree = "<group>"; };
 		17C702662920C06700C9C4EE /* ObstacleConfigs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleConfigs.swift; sourceTree = "<group>"; };
+		17DADD63292298B5002FCF90 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				17C7024F291FE08B00C9C4EE /* Actions.sks */,
 				17C70251291FE08B00C9C4EE /* GameScene.swift */,
 				17C702642920940200C9C4EE /* ObstacleSpawner.swift */,
+				17DADD63292298B5002FCF90 /* Player.swift */,
 				17C702662920C06700C9C4EE /* ObstacleConfigs.swift */,
 				17C7026229208AFA00C9C4EE /* CustomButtonNode.swift */,
 				17C70253291FE08B00C9C4EE /* GameViewController.swift */,
@@ -157,6 +160,7 @@
 				17C70254291FE08B00C9C4EE /* GameViewController.swift in Sources */,
 				17C7026329208AFA00C9C4EE /* CustomButtonNode.swift in Sources */,
 				17C702652920940200C9C4EE /* ObstacleSpawner.swift in Sources */,
+				17DADD64292298B5002FCF90 /* Player.swift in Sources */,
 				17C702672920C06700C9C4EE /* ObstacleConfigs.swift in Sources */,
 				17C7024C291FE08B00C9C4EE /* AppDelegate.swift in Sources */,
 			);
