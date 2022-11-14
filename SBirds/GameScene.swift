@@ -22,7 +22,7 @@ class GameScene: SKScene {
     let scrollSpeed: CGFloat = 200
     var scrollNode: SKNode!
     var player: SKSpriteNode!
-    var obstacleSpawner: SKNode!
+    var obstacleSpawner: ObstacleSpawner!
     var playButton: SKSpriteNode!
     var frontBarrier: SKSpriteNode!
     
@@ -39,6 +39,12 @@ class GameScene: SKScene {
         } else {
           print("playButton was not initialized properly")
         }
+        if let spawner = self.childNode(withName: "obstacleSpawner") as? ObstacleSpawner {
+          self.obstacleSpawner = spawner
+        } else {
+          print("spawner could not be connected properly")
+        }
+        connectBarrier()
     }
     
     func connectBarrier() {
@@ -61,6 +67,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         scrollWorld()
+        obstacleSpawner.generate(scene: self.scene!)
     }
     
     func scrollWorld() {
